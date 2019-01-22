@@ -1,12 +1,13 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import {loginUsers} from './data';
+import {loginUsers,Users} from './data';
 
 export default{
   init(){
     const mock=new MockAdapter(axios)
     mock.onGet('/success ').reply(200,{msg:'success'});
     mock.onGet('/error').reply('500',{msg:'failure'});
+
     mock.onPost('/login').reply(config=>{
       let {username,password}=JSON.parse(config.data)
       return new Promise((resolve,reject)=>{
@@ -30,7 +31,16 @@ export default{
       })
 
     })
+    mock.onGet('/index').reply(config => {
 
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            users: Users
+          }]);
+        }, 1000);
+      });
+    });
   },
 
 }
