@@ -51,7 +51,7 @@
                    })
                  }else{
                    localStorage.setItem('user',JSON.stringify(data.data))
-                   that.$router.push({path:'/index'})
+                   that.$router.push({path:'/table'})
                  }
                })
              }else{
