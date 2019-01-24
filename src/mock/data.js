@@ -13,8 +13,9 @@ for(var i=0;i<86;i++){
   Users.push(Mock.mock({
     id:Mock.Random.guid(),
     name:Mock.Random.cname(),
+    sex:Mock.Random.integer(0, 1),
     address:Mock.Random.county(true),
-    brithday:Mock.Random.date('yyyy-MM-dd'),
+    date:Mock.Random.date('yyyy-MM-dd'),
   }))
 }
 export {loginUsers,Users};
