@@ -38,7 +38,9 @@
           </el-breadcrumb>
         </div>
         <div class="el-col-24">
-          <router-view></router-view>
+          <transition name="el-fade-in-linear">
+            <router-view></router-view>
+          </transition>
         </div>
 
       </el-main>

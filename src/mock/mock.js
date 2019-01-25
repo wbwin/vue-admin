@@ -1,7 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import {loginUsers,Users} from './data';
-
+let _Users = Users;
 export default{
   init(){
     const mock=new MockAdapter(axios)
@@ -33,7 +33,7 @@ export default{
     })
     mock.onGet('/list').reply(config => {
       let {page,name}=config.params
-      let mockUsers=Users.filter(user=>{
+      let mockUsers=_Users.filter(user=>{
         if(name&&user.name.indexOf(name)==-1)return false
         return true
       })
@@ -47,6 +47,67 @@ export default{
           }]);
         }, 1000);
       });
+    });
+    mock.onGet('/edit').reply(config => {
+      let {id,name,date,sex,address}=config.params
+      _Users.some(u=>{
+        if(u.id===id){
+          u.name=name;
+          u.date=date;
+          u.sex=sex;
+          u.address=address;
+          return true
+        }
+      })
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+
+            resolve([200, {
+              code: 200,
+              msg: '编辑成功'
+            }]);
+          }, 500);
+        })
+
+    });
+    mock.onGet('/delUser').reply(config => {
+      let {id}=config.params;
+      _Users = _Users.filter(u => u.id !== id);
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+
+            resolve([200, {
+              code: 200,
+              msg: '删除成功'
+            }]);
+          }, 500);
+        })
+    });
+    mock.onGet('/delsUser').reply(config => {
+      let {ids}=config.params;
+      ids = ids.split(',');
+      _Users=_Users.filter(u=>!ids.includes(u.id))
+      return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+          resolve([200,{code:200,msg:'删除成功'}])
+        },500)
+      })
+
+    });
+    mock.onGet('/addUser').reply(config => {
+      let {name,date,sex,address}=config.params
+      _Users.unshift({
+        name:name,
+        date:date,
+        sex:sex,
+        address:address
+      })
+      return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+          resolve([200,{code:200,msg:'新增成功成功'}])
+        },500)
+      })
+
     });
   },
 
