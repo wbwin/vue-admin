@@ -1,5 +1,6 @@
 # vue+Element UI+mockjs-admin
 vue+Element UI+mockjs的后台登录页面小练习
+登陆的账号密码都为 admin
 # To start
 
 This is a project template for [vue-cli](https://github.com/vuejs/vue-cli)
