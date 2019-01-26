@@ -8,7 +8,12 @@
       </el-col>
       <el-col :span="21" >
         <div class="row-nav-right">
-          <span class="row-nav-right-name">王大大<img src="../../static/image/ed.jpg"/></span>
+          <el-dropdown trigger="hover">
+            <span class="row-nav-right-name el-dropdown-link">王大大<img src="../../static/image/ed.jpg"/></span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item @click.native="">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </div>
       </el-col>
     </el-row>

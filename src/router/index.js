@@ -1,8 +1,8 @@
 
-import login from '@/components/login'
-import index from '@/components/index'
-import Table from '@/components/nav/table'
-import From from '@/components/nav/from'
+import login from '@/views/login'
+import index from '@/views/index'
+import Table from '@/views/nav/table'
+import From from '@/views/nav/from'
 
 let routes=[
   {
